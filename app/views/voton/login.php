@@ -3,17 +3,18 @@
 <body>
 
   <main>
+  
     <div class="container">
-
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
+            <img src="<?=ASSETS.THEME?>images/Logoitel.jpg " width="90px"; height ="200px"; class="logo-image img-fluid" alt="templatemo pod talk">
+                  <h3>PAP-2022/2023</h3>
+                  
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                  <img src="assets/img/logo.png" alt="">
-                  <span class="d-none d-lg-block">VotoON</span>
+                  <span class="d-none d-lg-block ">VotoON</span>
                 </a>
               </div><!-- End Logo -->
 

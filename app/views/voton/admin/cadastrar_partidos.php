@@ -5,12 +5,13 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Form Layouts</h1>
+      <h1>Cadastrar Partido</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Forms</li>
+          <li class="breadcrumb-item"><a href="index.html">Página Principal</a></li>
+          <!--<li class="breadcrumb-item">Forms</li>
           <li class="breadcrumb-item active">Layouts</li>
+-->
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -21,7 +22,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Floating labels Form</h5>
+              <h5 class="card-title">Dados dos Partidos</h5>
 
               <!-- Floating Labels Form -->
               <form method="POST"  enctype="multipart/form-data" class="row g-3">
@@ -74,7 +75,7 @@
                   <?php if(isset($partido)):?>
                     <button type="submit" name="update" class="btn btn-primary">Atualizar</button>
                   <?php else: ?>
-                    <button type="submit" name="add" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="add" class="btn btn-primary">Enviar</button>
                   <?php endif;?>
                   <button type="reset" class="btn btn-secondary">Reset</button>
                 </div>

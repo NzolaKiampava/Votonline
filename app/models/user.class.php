@@ -12,7 +12,8 @@ Class User
 		$db = Database::getInstance();
 
 		$data['name']      = trim($POST['name']);		
-		$data['email']     = trim($POST['email']);		
+		$data['email']     = trim($POST['email']);
+		$data['phone']	   = trim($POST['phone']);		
 		$data['password']  = trim($POST['password']);		
 		$password2         = trim($POST['password2']);
 
@@ -24,7 +25,12 @@ Class User
 		if(empty($data['name']) || !preg_match("/^[a-zA-Z ]+$/", $data['name']))
 		{
 			$this->error .= "Porfavor entra com um nome valido <br>";
-		}	
+		}
+		
+		if(empty($data['phone']) || !preg_match("/^[a-zA-Z ]+$/", $data['phone']))
+		{
+			$this->error .= "Porfavor entra com o seu numero de telefone<br>";
+		}
 
 		if($data['password'] !== $password2)
 		{
@@ -37,11 +43,12 @@ Class User
 		}
 
 		//check if email already exits
-		$sql = "SELECT * FROM users WHERE email = :email limit 1";
+		$sql = "SELECT * FROM users WHERE email = :email && telefone = :phone limit 1";
 		$arr['email'] = $data['email'];
+		$arr['phone'] = $data['phone'];
 		$check = $db->read($sql,$arr);
 		if(is_array($check)){
-			$this->error .= "Este email já está em uso <br>";
+			$this->error .= "Este email ou numero de telefone já está em uso <br>";
 		}
 
         $data['url_address'] = $this->get_random_string_max(30);
@@ -58,11 +65,12 @@ Class User
 
 		if($this->error == ""){
 			//save
+			$data['sms_code'] = $this->get_random_sms_code(6);
 			$data['rank'] = "normal";
 			$data['data_de_criacao'] = date("Y-m-d H:i:s");
 			$data['password'] = hash('sha1', $data['password']);
 
-			$query = "INSERT INTO users (url_address,name,email,password,rank,data_de_criacao) values (:url_address,:name,:email,:password,:rank,:data_de_criacao)";
+			$query = "INSERT INTO users (url_address,name,email, telefone, sms_code ,password,rank,data_de_criacao) values (:url_address,:name,:email,:phone,:sms_code,:password,:rank,:data_de_criacao)";
 
 			$result = $db->write($query,$data);
 
@@ -456,6 +464,23 @@ Class User
 		for ($i=0; $i < $length; $i++) { 
 			
 			$random = rand(0,30);
+			
+			$text .= $array[$random];
+		}
+
+		return $text;
+	}
+
+	private function get_random_sms_code($length)
+	{
+		$array = array(0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+
+		$text = "";
+		$length = rand(4,$length);   //$length acumula valores aleeatorios de 4 ate o valor da var length
+
+		for ($i=0; $i < $length; $i++) { 
+			
+			$random = rand(0,6);
 			
 			$text .= $array[$random];
 		}

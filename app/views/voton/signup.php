@@ -2,13 +2,15 @@
 
 <body>
 
-  <main>
+<main>
     <div class="container">
 
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <img src="<?=ASSETS.THEME?>images/Logoitel.jpg " width="90px"; height ="200px"; class="logo-image img-fluid" alt="templatemo pod talk">
+                  <h3>PAP-2022/2023</h3>
 
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
@@ -32,27 +34,45 @@
                     <div class="col-12">
                       <label for="yourName" class="form-label">Seu nome</label>
                       <input type="text" name="name" class="form-control" id="yourName" required>
-                      <div class="invalid-feedback">Please, enter your name!</div>
+                      <div class="invalid-feedback">Por favor, digite seu nome!</div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourEmail" class="form-label">Seu Email</label>
                       <input type="email" name="email" class="form-control" id="yourEmail" required>
-                      <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                      <div class="invalid-feedback">Por favor ,digite um endereço de Email válido!</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="yourPhone" class="form-label">Seu Telefone</label>
+                      <input type="number" maxLength="999999999" minLength="111111111" name="phone" class="form-control" id="yourPhone" required>
+                      <div class="invalid-feedback">Por favor ,digite o seu numero actual!</div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">palavra-Passe</label>
                       <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
+                      <div class="invalid-feedback">Por favor introduza a tua palavra-passe!</div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Verificar palavra-Passe</label>
                       <input type="password" name="password2" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
+                      <div class="invalid-feedback">Por favor Verifica a palavra-passe!</div>
                     </div>
 
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="idade" required="">
+                        <label class="form-check-label" for="idade">+18 anos de idade </label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="pais" required="">
+                        <label class="form-check-label" for="pais">Angola </label>
+                      </div>
+                    </div>
                    
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">Criar conta</button>
@@ -77,17 +97,17 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="<?=ASSETS.THEME?>>admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="<?=ASSETS.THEME?>>admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="<?=ASSETS.THEME?>>admin/assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="<?=ASSETS.THEME?>>admin/assets/vendor/echarts/echarts.min.js"></script>
-  <script src="<?=ASSETS.THEME?>>admin/assets/vendor/quill/quill.min.js"></script>
-  <script src="<?=ASSETS.THEME?>>admin/assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="<?=ASSETS.THEME?>>admin/assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="<?=ASSETS.THEME?>>admin/assets/vendor/php-email-form/validate.js"></script>
+  <script src="<?=ASSETS.THEME?>admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="<?=ASSETS.THEME?>admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?=ASSETS.THEME?>admin/assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="<?=ASSETS.THEME?>admin/assets/vendor/echarts/echarts.min.js"></script>
+  <script src="<?=ASSETS.THEME?>admin/assets/vendor/quill/quill.min.js"></script>
+  <script src="<?=ASSETS.THEME?>admin/assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="<?=ASSETS.THEME?>admin/assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="<?=ASSETS.THEME?>admin/assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="<?=ASSETS.THEME?>>admin/assets/js/main.js"></script>
+  <script src="<?=ASSETS.THEME?>admin/assets/js/main.js"></script>
 
 </body>
 

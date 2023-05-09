@@ -108,7 +108,28 @@
     <script src="<?=ASSETS.THEME?>js/bootstrap.bundle.min.js"></script>
     <script src="<?=ASSETS.THEME?>js/owl.carousel.min.js"></script>
     <script src="<?=ASSETS.THEME?>js/custom.js"></script>
-
+    <script src="<?=ASSETS.THEME?>js/sweetalert2.all.min.js"></script>
+    <?php if(isset($_SESSION['success'])):?>
+    <script>
+      Swal.fire({
+        icon: 'success',
+        title: '<?=$_SESSION['success']?>',
+        showConfirmButton: false,
+        timer: 2000
+      })
+    </script>
+  <?php endif; unset($_SESSION['success'])?>
+  <?php if(isset($_SESSION['error'])):?>
+    <script>
+      Swal.fire({
+        icon: 'warning',
+        title: '<?=$_SESSION['error']?>',
+        showConfirmButton: false,
+        timer: 2000
+      })
+    </script>
+  <?php endif; unset($_SESSION['error'])?>
+    
 </body>
 
 </html>

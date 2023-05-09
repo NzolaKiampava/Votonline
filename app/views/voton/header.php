@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -44,17 +44,21 @@ https://templatemo.com/tm-584-pod-talk
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand me-lg-5 me-0" href="index.html">
-                    <img src="<?=ASSETS.THEME?>images/R.png" class="logo-image img-fluid" alt="templatemo pod talk">
+                <h4 class="text-white">PAP-2022/2023</h4>
+                    <img src="<?=ASSETS.THEME?>images/Logoitel.jpg" class="logo-image img-fluid" alt="templatemo pod talk">
                 </a>
 
                 <form action="#" method="get" class="custom-form search-form flex-fill me-3" role="search">
                     <div class="input-group input-group-lg">
+                        <!--
                         <input name="search" type="search" class="form-control" id="search" placeholder="Search Podcast"
                             aria-label="Search">
 
                         <button type="submit" class="form-control" id="submit">
                             <i class="bi-search"></i>
                         </button>
+-->
+                        
                     </div>
                 </form>
 
@@ -72,13 +76,14 @@ https://templatemo.com/tm-584-pod-talk
                         <?php endif;?>
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="index.html">Home</a>
+                            <a class="nav-link<?=$page_title == "Home"? "" : ""?>" href="<?=ROOT?>">Página principal</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link <?=$page_title == "Percentagens"? "active" : ""?>" href="<?=ROOT?>percentagens_votos">Percentagens de Votos</a>
                         </li>
-
+                       
+                        <!--
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
@@ -89,9 +94,10 @@ https://templatemo.com/tm-584-pod-talk
                                 <li><a class="dropdown-item" href="detail-page.html">Detail Page</a></li>
                             </ul>
                         </li>
+                        -->
                         <?php if(isset($data['user_data'])):?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?=ROOT?>logout">Logout</a>
+                            <a class="nav-link" href="<?=ROOT?>logout">Sair</a>
                         </li>
                         <?php else:?>
                             <li class="nav-item">
