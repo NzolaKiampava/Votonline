@@ -1,5 +1,8 @@
 <?php
 
+require __DIR__ . '/vendor/autoload.php';
+use Twilio\Rest\Client;
+
 Class User 
 {
 
@@ -7,7 +10,9 @@ Class User
 
 	public function signup($POST)
 	{
-			
+		$sid = 'AC45a0d68b4e3f4e3a86cafbfbc3359756';
+		$token = '1781cc9e5efe91ce4b0ac2b82b593886';
+
 		$data = array();
 		$db = Database::getInstance();
 
@@ -27,7 +32,7 @@ Class User
 			$this->error .= "Porfavor entra com um nome valido <br>";
 		}
 		
-		if(empty($data['phone']) || !preg_match("/^[a-zA-Z ]+$/", $data['phone']))
+		if(empty($data['phone']))
 		{
 			$this->error .= "Porfavor entra com o seu numero de telefone<br>";
 		}
@@ -65,23 +70,74 @@ Class User
 
 		if($this->error == ""){
 			//save
-			$data['sms_code'] = $this->get_random_sms_code(6);
+			
+			$sms = $this->get_random_sms_code(6);
+			
+			$twilio_number = "+12706151279";
+
+			$client = new Client($sid, $token);
+			$message = $client->messages->create(
+				// Where to send a text message (your cell phone?)
+				'+244922478073',
+				array(
+					'from' => $twilio_number,
+					'body' => 'Ola o seu codigo de verificação é: '.$sms.'.'
+				)
+			);
+
+			$data['sms_code'] = $sms;
 			$data['rank'] = "normal";
 			$data['data_de_criacao'] = date("Y-m-d H:i:s");
 			$data['password'] = hash('sha1', $data['password']);
 
-			$query = "INSERT INTO users (url_address,name,email, telefone, sms_code ,password,rank,data_de_criacao) values (:url_address,:name,:email,:phone,:sms_code,:password,:rank,:data_de_criacao)";
+			show($data);
+
+			$query = "INSERT INTO users (url_address,name,email,telefone,verified_sms_code,password,rank,data_de_criacao) values (:url_address,:name,:email,:phone,:sms_code,:password,:rank,:data_de_criacao)";
 
 			$result = $db->write($query,$data);
 
 			if($result)
 			{
-				header("Location: " . ROOT . "login");
+				header("Location: " . ROOT . "verify_sms_code");
 				die;
 			}
 		}
 
 		$_SESSION['error'] = $this->error;
+	}
+
+	public function verify_sms_code($POST){
+		$data = array();
+
+		$db = Database::getInstance();
+
+		$data['sms_code'] = trim($POST['sms_code']);
+
+		if(empty($data['sms_code']))
+		{
+			$this->error .= "Porfavor entra com codigo valido <br>";
+		}
+
+		
+		if($this->error == ""){
+			//comfirm
+
+			$sql = "SELECT * FROM users WHERE verified_sms_code = :sms_code limit 1";
+			$result = $db->read($sql,$data);
+
+			if(is_array($result)){
+				$id = $result[0]->id;
+				$update = $db->write("UPDATE users SET code_verified = 1 where id = '$id'");
+				if($update){
+					header("Location: " . ROOT . "login");
+					die;
+				}
+			}else {
+				$this->error .= "O codigo errado";
+			}
+		}
+		$_SESSION['error'] = $this->error;
+
 	}
 
 	public function login($POST)
@@ -106,7 +162,8 @@ Class User
 			//comfirm
 
 			$data['password'] = hash('sha1', $data['password']);
-			$sql = "SELECT * FROM users WHERE name = :name and password = :password limit 1";
+			$data['code_verified'] = 1;
+			$sql = "SELECT * FROM users WHERE name = :name and password = :password and code_verified = :code_verified limit 1";
 
 			$result = $db->read($sql,$data);
 
@@ -119,7 +176,7 @@ Class User
 				die;
 			}
 
-			$this->error .= "Nome do Usuário ou Password errado <br>";
+			$this->error .= "Nome do Usuário ou Password errado. Ou codigo de sms não verificado<br>";
 		}
 
 		$_SESSION['error'] = $this->error;
