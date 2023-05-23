@@ -98,11 +98,9 @@
                                                 <?=$partido->nome?>
                                             </a>
                                         </h5>
-                                        <?php $decimal = $partido->totalvotos;
-                                            $percentagem = $decimal * 0.01;
-                                        ?>
+                                        
                                         <p class="badge mb-0"><?=$partido->totalvotos?></p>
-                                        <p><?=$percentagem?>%</p>
+                                        <p><?=$partido->totalvotos?>%</p>
                                     </div>
                                 </div>
                             </div>
