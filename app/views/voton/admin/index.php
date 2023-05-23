@@ -82,7 +82,7 @@
                       <i class="ri ri-line-chart-line"></i>
                     </div>
                     <div class="ps-3">
-                      <h6><?=is_array($votos)?count($votos):'0'?></h6>
+                      <h6><?=is_array($votos)?count($votos):'0'?>%</h6>
 
                     </div>
                   </div>
